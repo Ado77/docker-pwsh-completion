@@ -17,7 +17,7 @@ $script:dockerCommandTabComplete = {
             }
             $element.Value
         }) -join ';'
-    # attach build commit cp create deploy diff events exec export history images import info inspect kill load login logout logs pause port ps pull push rename restart rm rmi run save search start stats stop tag top unpause update version wait
+    # attach build commit cp create diff events exec export history images import info inspect kill load login logout logs pause port ps pull push rename restart rm rmi run save search start stats stop tag top unpause update version wait
     $completions = @(switch ($command) {
             "$baseCommand" {
                 [CompletionResult]::new('attach', 'attach', [CompletionResultType]::ParameterName, 'Attach local standard input, output, and error streams to a running container')
@@ -92,14 +92,11 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--memory-swap', 'memory-swap', [CompletionResultType]::ParameterName, 'Swap limit equal to memory plus swap: ''-1'' to enable unlimited swap')
                 [CompletionResult]::new('--network', 'network', [CompletionResultType]::ParameterName, 'Set the networking mode for the RUN instructions during build (default "default")')
                 [CompletionResult]::new('--no-cache', 'no-cache', [CompletionResultType]::ParameterName, 'Do not use cache when building the image')
-                [CompletionResult]::new('--platform', 'platform', [CompletionResultType]::ParameterName, 'Set platform if server is multi-platform capable')
                 [CompletionResult]::new('--pull', 'pull', [CompletionResultType]::ParameterName, 'Always attempt to pull a newer version of the image')
                 [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Suppress the build output and print image ID on success')
                 [CompletionResult]::new('--rm', 'rm', [CompletionResultType]::ParameterName, 'Remove intermediate containers after a successful build (default true)')
                 [CompletionResult]::new('--security-opt', 'security-opt', [CompletionResultType]::ParameterName, 'Security options')
                 [CompletionResult]::new('--shm-size', 'shm-size', [CompletionResultType]::ParameterName, 'Size of /dev/shm')
-                [CompletionResult]::new('--squash', 'squash', [CompletionResultType]::ParameterName, 'Squash newly built layers into a single new layer')
-                [CompletionResult]::new('--stream', 'stream', [CompletionResultType]::ParameterName, 'Stream attaches to server to negotiate build context')
                 [CompletionResult]::new('--tag', 'tag', [CompletionResultType]::ParameterName, 'Name and optionally a tag in the ''name:tag'' format')
                 [CompletionResult]::new('--target', 'target', [CompletionResultType]::ParameterName, 'Set the target build stage to build.')
                 [CompletionResult]::new('--ulimit', 'ulimit', [CompletionResultType]::ParameterName, 'Ulimit options (default [])')
@@ -128,9 +125,8 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--cap-add', 'cap-add', [CompletionResultType]::ParameterName, 'Add Linux capabilities')
                 [CompletionResult]::new('--cap-drop', 'cap-drop', [CompletionResultType]::ParameterName, 'Drop Linux capabilities')
                 [CompletionResult]::new('--cgroup-parent', 'cgroup-parent', [CompletionResultType]::ParameterName, 'Optional parent cgroup for the container')
+                [CompletionResult]::new('--cgroupns', 'cgroupns', [CompletionResultType]::ParameterName, 'Cgroup namespace to use (host|private)')
                 [CompletionResult]::new('--cidfile', 'cidfile', [CompletionResultType]::ParameterName, 'Write the container ID to the file')
-                [CompletionResult]::new('--cpu-count', 'cpu-count', [CompletionResultType]::ParameterName, 'CPU count (Windows only)')
-                [CompletionResult]::new('--cpu-percent', 'cpu-percent', [CompletionResultType]::ParameterName, 'CPU percent (Windows only)')
                 [CompletionResult]::new('--cpu-period', 'cpu-period', [CompletionResultType]::ParameterName, 'Limit CPU CFS (Completely Fair Scheduler) period')
                 [CompletionResult]::new('--cpu-quota', 'cpu-quota', [CompletionResultType]::ParameterName, 'Limit CPU CFS (Completely Fair Scheduler) quota')
                 [CompletionResult]::new('--cpu-rt-period', 'cpu-rt-period', [CompletionResultType]::ParameterName, 'Limit CPU real-time period in microseconds')
@@ -165,8 +161,6 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--hostname', 'hostname', [CompletionResultType]::ParameterName, 'Container host name')
                 [CompletionResult]::new('--init', 'init', [CompletionResultType]::ParameterName, 'Run an init inside the container that forwards signals and reaps processes')
                 [CompletionResult]::new('--interactive', 'interactive', [CompletionResultType]::ParameterName, 'Keep STDIN open even if not attached')
-                [CompletionResult]::new('--io-maxbandwidth', 'io-maxbandwidth', [CompletionResultType]::ParameterName, 'Maximum IO bandwidth limit for the system drive (Windows only)')
-                [CompletionResult]::new('--io-maxiops', 'io-maxiops', [CompletionResultType]::ParameterName, 'Maximum IOps limit for the system drive (Windows only)')
                 [CompletionResult]::new('--ip', 'ip', [CompletionResultType]::ParameterName, 'IPv4 address (e.g., 172.30.100.104)')
                 [CompletionResult]::new('--ip6', 'ip6', [CompletionResultType]::ParameterName, 'IPv6 address (e.g., 2001:db8::33)')
                 [CompletionResult]::new('--ipc', 'ipc', [CompletionResultType]::ParameterName, 'IPC mode to use')
@@ -196,6 +190,7 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--privileged', 'privileged', [CompletionResultType]::ParameterName, 'Give extended privileges to this container')
                 [CompletionResult]::new('--publish', 'publish', [CompletionResultType]::ParameterName, 'Publish a container''s port(s) to the host')
                 [CompletionResult]::new('--publish-all', 'publish-all', [CompletionResultType]::ParameterName, 'Publish all exposed ports to random ports')
+                [CompletionResult]::new('--pull', 'pull', [CompletionResultType]::ParameterName, 'Pull image before creating ("always"|"missing"|"never") (default "missing")')
                 [CompletionResult]::new('--read-only', 'read-only', [CompletionResultType]::ParameterName, 'Mount the container''s root filesystem as read only')
                 [CompletionResult]::new('--restart', 'restart', [CompletionResultType]::ParameterName, 'Restart policy to apply when a container exits (default "no")')
                 [CompletionResult]::new('--rm', 'rm', [CompletionResultType]::ParameterName, 'Automatically remove the container when it exits')
@@ -219,16 +214,6 @@ $script:dockerCommandTabComplete = {
 
                 break
             }
-            "$baseCommand;deploy" {
-                [CompletionResult]::new('--bundle-file', 'bundle-file', [CompletionResultType]::ParameterName, 'Path to a Distributed Application Bundle file')
-                [CompletionResult]::new('--compose-file', 'compose-file', [CompletionResultType]::ParameterName, 'Path to a Compose file, or "-" to read from stdin')
-                [CompletionResult]::new('--namespace', 'namespace', [CompletionResultType]::ParameterName, 'Kubernetes namespace to use')
-                [CompletionResult]::new('--prune', 'prune', [CompletionResultType]::ParameterName, 'Prune services that are no longer referenced')
-                [CompletionResult]::new('--resolve-image', 'resolve-image', [CompletionResultType]::ParameterName, 'Query the registry to resolve image digest and supported platforms ("always"|"changed"|"never") (default "always")')
-                [CompletionResult]::new('--with-registry-auth', 'with-registry-auth', [CompletionResultType]::ParameterName, 'Send registry authentication details to Swarm agents')
-
-                break
-            }
             "$baseCommand;diff" {
 
                 break
@@ -245,6 +230,7 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--detach', 'detach', [CompletionResultType]::ParameterName, 'Detached mode: run command in the background')
                 [CompletionResult]::new('--detach-keys', 'detach-keys', [CompletionResultType]::ParameterName, 'Override the key sequence for detaching a container')
                 [CompletionResult]::new('--env', 'env', [CompletionResultType]::ParameterName, 'Set environment variables')
+                [CompletionResult]::new('--env-file', 'env-file', [CompletionResultType]::ParameterName, 'Read in a file of environment variables')
                 [CompletionResult]::new('--interactive', 'interactive', [CompletionResultType]::ParameterName, 'Keep STDIN open even if not attached')
                 [CompletionResult]::new('--privileged', 'privileged', [CompletionResultType]::ParameterName, 'Give extended privileges to the command')
                 [CompletionResult]::new('--tty', 'tty', [CompletionResultType]::ParameterName, 'Allocate a pseudo-TTY')
@@ -262,7 +248,7 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--format', 'format', [CompletionResultType]::ParameterName, 'Pretty-print images using a Go template')
                 [CompletionResult]::new('--human', 'human', [CompletionResultType]::ParameterName, 'Print sizes and dates in human readable format (default true)')
                 [CompletionResult]::new('--no-trunc', 'no-trunc', [CompletionResultType]::ParameterName, 'Don''t truncate output')
-                [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Only show numeric IDs')
+                [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Only show image IDs')
 
                 break
             }
@@ -272,7 +258,7 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--filter', 'filter', [CompletionResultType]::ParameterName, 'Filter output based on conditions provided')
                 [CompletionResult]::new('--format', 'format', [CompletionResultType]::ParameterName, 'Pretty-print images using a Go template')
                 [CompletionResult]::new('--no-trunc', 'no-trunc', [CompletionResultType]::ParameterName, 'Don''t truncate output')
-                [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Only show numeric IDs')
+                [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Only show image IDs')
 
                 break
             }
@@ -320,10 +306,10 @@ $script:dockerCommandTabComplete = {
             "$baseCommand;logs" {
                 [CompletionResult]::new('--details', 'details', [CompletionResultType]::ParameterName, 'Show extra details provided to logs')
                 [CompletionResult]::new('--follow', 'follow', [CompletionResultType]::ParameterName, 'Follow log output')
-                [CompletionResult]::new('--since', 'since', [CompletionResultType]::ParameterName, 'Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)')
+                [CompletionResult]::new('--since', 'since', [CompletionResultType]::ParameterName, 'Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)')
                 [CompletionResult]::new('--tail', 'tail', [CompletionResultType]::ParameterName, 'Number of lines to show from the end of the logs (default "all")')
                 [CompletionResult]::new('--timestamps', 'timestamps', [CompletionResultType]::ParameterName, 'Show timestamps')
-                [CompletionResult]::new('--until', 'until', [CompletionResultType]::ParameterName, 'Show logs before a timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)')
+                [CompletionResult]::new('--until', 'until', [CompletionResultType]::ParameterName, 'Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)')
 
                 break
             }
@@ -342,7 +328,7 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--last', 'last', [CompletionResultType]::ParameterName, 'Show n last created containers (includes all states) (default -1)')
                 [CompletionResult]::new('--latest', 'latest', [CompletionResultType]::ParameterName, 'Show the latest created container (includes all states)')
                 [CompletionResult]::new('--no-trunc', 'no-trunc', [CompletionResultType]::ParameterName, 'Don''t truncate output')
-                [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Only display numeric IDs')
+                [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Only display container IDs')
                 [CompletionResult]::new('--size', 'size', [CompletionResultType]::ParameterName, 'Display total file sizes')
 
                 break
@@ -356,7 +342,9 @@ $script:dockerCommandTabComplete = {
                 break
             }
             "$baseCommand;push" {
+                [CompletionResult]::new('--all-tags', 'all-tags', [CompletionResultType]::ParameterName, 'Push all tagged images in the repository')
                 [CompletionResult]::new('--disable-content-trust', 'disable-content-trust', [CompletionResultType]::ParameterName, 'Skip image signing (default true)')
+                [CompletionResult]::new('--quiet', 'quiet', [CompletionResultType]::ParameterName, 'Suppress verbose output')
 
                 break
             }
@@ -390,9 +378,8 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--cap-add', 'cap-add', [CompletionResultType]::ParameterName, 'Add Linux capabilities')
                 [CompletionResult]::new('--cap-drop', 'cap-drop', [CompletionResultType]::ParameterName, 'Drop Linux capabilities')
                 [CompletionResult]::new('--cgroup-parent', 'cgroup-parent', [CompletionResultType]::ParameterName, 'Optional parent cgroup for the container')
+                [CompletionResult]::new('--cgroupns', 'cgroupns', [CompletionResultType]::ParameterName, 'Cgroup namespace to use (host|private)')
                 [CompletionResult]::new('--cidfile', 'cidfile', [CompletionResultType]::ParameterName, 'Write the container ID to the file')
-                [CompletionResult]::new('--cpu-count', 'cpu-count', [CompletionResultType]::ParameterName, 'CPU count (Windows only)')
-                [CompletionResult]::new('--cpu-percent', 'cpu-percent', [CompletionResultType]::ParameterName, 'CPU percent (Windows only)')
                 [CompletionResult]::new('--cpu-period', 'cpu-period', [CompletionResultType]::ParameterName, 'Limit CPU CFS (Completely Fair Scheduler) period')
                 [CompletionResult]::new('--cpu-quota', 'cpu-quota', [CompletionResultType]::ParameterName, 'Limit CPU CFS (Completely Fair Scheduler) quota')
                 [CompletionResult]::new('--cpu-rt-period', 'cpu-rt-period', [CompletionResultType]::ParameterName, 'Limit CPU real-time period in microseconds')
@@ -429,8 +416,6 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--hostname', 'hostname', [CompletionResultType]::ParameterName, 'Container host name')
                 [CompletionResult]::new('--init', 'init', [CompletionResultType]::ParameterName, 'Run an init inside the container that forwards signals and reaps processes')
                 [CompletionResult]::new('--interactive', 'interactive', [CompletionResultType]::ParameterName, 'Keep STDIN open even if not attached')
-                [CompletionResult]::new('--io-maxbandwidth', 'io-maxbandwidth', [CompletionResultType]::ParameterName, 'Maximum IO bandwidth limit for the system drive (Windows only)')
-                [CompletionResult]::new('--io-maxiops', 'io-maxiops', [CompletionResultType]::ParameterName, 'Maximum IOps limit for the system drive (Windows only)')
                 [CompletionResult]::new('--ip', 'ip', [CompletionResultType]::ParameterName, 'IPv4 address (e.g., 172.30.100.104)')
                 [CompletionResult]::new('--ip6', 'ip6', [CompletionResultType]::ParameterName, 'IPv6 address (e.g., 2001:db8::33)')
                 [CompletionResult]::new('--ipc', 'ipc', [CompletionResultType]::ParameterName, 'IPC mode to use')
@@ -460,6 +445,7 @@ $script:dockerCommandTabComplete = {
                 [CompletionResult]::new('--privileged', 'privileged', [CompletionResultType]::ParameterName, 'Give extended privileges to this container')
                 [CompletionResult]::new('--publish', 'publish', [CompletionResultType]::ParameterName, 'Publish a container''s port(s) to the host')
                 [CompletionResult]::new('--publish-all', 'publish-all', [CompletionResultType]::ParameterName, 'Publish all exposed ports to random ports')
+                [CompletionResult]::new('--pull', 'pull', [CompletionResultType]::ParameterName, 'Pull image before running ("always"|"missing"|"never") (default "missing")')
                 [CompletionResult]::new('--read-only', 'read-only', [CompletionResultType]::ParameterName, 'Mount the container''s root filesystem as read only')
                 [CompletionResult]::new('--restart', 'restart', [CompletionResultType]::ParameterName, 'Restart policy to apply when a container exits (default "no")')
                 [CompletionResult]::new('--rm', 'rm', [CompletionResultType]::ParameterName, 'Automatically remove the container when it exits')
@@ -499,8 +485,6 @@ $script:dockerCommandTabComplete = {
             }
             "$baseCommand;start" {
                 [CompletionResult]::new('--attach', 'attach', [CompletionResultType]::ParameterName, 'Attach STDOUT/STDERR and forward signals')
-                [CompletionResult]::new('--checkpoint', 'checkpoint', [CompletionResultType]::ParameterName, 'Restore from this checkpoint')
-                [CompletionResult]::new('--checkpoint-dir', 'checkpoint-dir', [CompletionResultType]::ParameterName, 'Use a custom checkpoint storage directory')
                 [CompletionResult]::new('--detach-keys', 'detach-keys', [CompletionResultType]::ParameterName, 'Override the key sequence for detaching a container')
                 [CompletionResult]::new('--interactive', 'interactive', [CompletionResultType]::ParameterName, 'Attach container''s STDIN')
 
@@ -569,4 +553,3 @@ $script:dockerCommandTabComplete = {
 
 Register-ArgumentCompleter -Native -CommandName 'docker' -ScriptBlock $script:dockerCommandTabComplete
 Register-ArgumentCompleter -Native -CommandName 'd' -ScriptBlock $script:dockerCommandTabComplete
-
